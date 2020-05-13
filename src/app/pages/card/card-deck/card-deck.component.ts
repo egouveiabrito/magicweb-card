@@ -5,7 +5,7 @@ import { ApiService } from '../../../@service/api-service';
 @Component({
   selector: 'ngx-card-deck',
   templateUrl: './card-deck.component.html',
-  styleUrls: ['./card-deck.component.scss']
+  styleUrls: ['./card-deck.component.scss'],
 })
 export class CardDeckComponent implements OnInit {
 

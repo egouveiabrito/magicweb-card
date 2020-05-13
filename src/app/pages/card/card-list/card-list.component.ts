@@ -2,6 +2,7 @@ import { CardActionListComponent } from './../card-action-list/card-action-list.
 import { Card } from './../card';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../@service/api-service';
+import { NbSearchService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-card-list',
@@ -9,6 +10,8 @@ import { ApiService } from '../../../@service/api-service';
   styleUrls: ['./card-list.component.scss'],
 })
 export class CardListComponent implements OnInit {
+
+  search: string;
 
   source: Card[];
 
@@ -45,13 +48,18 @@ export class CardListComponent implements OnInit {
       },
     },
   };
-  constructor(private service: ApiService) { }
+  constructor(private service: ApiService, private searchService: NbSearchService) {
+    this.searchService.onSearchSubmit()
+      .subscribe((search: any) => {
+        this.search = search.term;
+        this.OnSearch();
+     });
+   }
 
   ngOnInit(): void {
-    this.OnSearch();
   }
   OnSearch() {
-    const cards$ = this.service.getCards('chandra');
+    const cards$ = this.service.getCards(this.search);
     cards$.subscribe(
       cards => {
         this.source = this.addImages(cards.data);

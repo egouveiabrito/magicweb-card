@@ -1,4 +1,3 @@
-import { Card } from './../card';
 import { ApiService } from '../../../@service/api-service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';

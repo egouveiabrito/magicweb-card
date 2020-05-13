@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import {
   NbActionsModule,
   NbButtonModule,
@@ -9,6 +10,9 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
+  NbSearchModule,
+  NbAlertModule,
+  NbPopoverModule,
 
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -36,6 +40,9 @@ import { CardDeckComponent } from './card-deck/card-deck.component';
     ngFormsModule,
     CardRoutingModule,
     Ng2SmartTableModule,
+    NbSearchModule,
+    NbAlertModule,
+    NbPopoverModule,
   ],
   declarations: [
     CardComponent,

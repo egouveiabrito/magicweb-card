@@ -12,7 +12,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'cube',
     children: [
       {
-        title: 'Search Cards',
+        title: 'Search',
         link: '/pages/card/list',
       },
       {
