@@ -17,24 +17,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPictureOnly: boolean = false;
   user: any;
 
-  themes = [
-    {
-      value: 'default',
-      name: 'Light',
-    },
-    {
-      value: 'dark',
-      name: 'Dark',
-    },
-    {
-      value: 'cosmic',
-      name: 'Cosmic',
-    },
-    {
-      value: 'corporate',
-      name: 'Corporate',
-    },
-  ];
+  // themes = [
+  //   {
+  //     value: 'default',
+  //     name: 'Light',
+  //   },
+  //   {
+  //     value: 'dark',
+  //     name: 'Dark',
+  //   },
+  //   {
+  //     value: 'cosmic',
+  //     name: 'Cosmic',
+  //   },
+  //   {
+  //     value: 'corporate',
+  //     name: 'Corporate',
+  //   },
+  // ];
 
   currentTheme = 'default';
 
@@ -50,6 +50,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
+
+    this.themeService.changeTheme('cosmic');
 
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
