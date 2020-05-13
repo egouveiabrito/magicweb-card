@@ -1,11 +1,13 @@
-<div class="buttons-row">
-    <button nbButton primary ghost (click)="OnCreate(this)">
-    Add Deck
-  </button>
-    <button nbButton primary ghost>
-    {{Value | async}}
-  </button>
-    <button nbButton primary ghost (click)="OnRemove(this)">
-    Remove
-  </button>
-</div>
+<nb-card-body>
+    <div class="buttons-row">
+        <button nbButton primary ghost (click)="OnCreate(this)">
+      Add Deck
+    </button>
+        <button style="margin-left:25px;" nbButton primary ghost>
+      {{Value | async}}
+    </button>
+        <button nbButton primary ghost (click)="OnRemove(this)">
+      Remove
+    </button>
+    </div>
+</nb-card-body>

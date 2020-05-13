@@ -18,6 +18,7 @@ import { CardComponent } from './card.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { CardActionListComponent } from './card-action-list/card-action-list.component';
 import { FormsModule as ngFormsModule } from '@angular/forms';
+import { CardDeckComponent } from './card-deck/card-deck.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
     CardComponent,
     CardListComponent,
     CardActionListComponent,
+    CardDeckComponent,
   ],
 })
 export class CardModule { }

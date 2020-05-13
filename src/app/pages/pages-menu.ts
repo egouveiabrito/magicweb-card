@@ -9,11 +9,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Card',
-    icon: 'edit-2-outline',
+    icon: 'cube',
     children: [
       {
-        title: 'Add Cards',
+        title: 'Search Cards',
         link: '/pages/card/list',
+      },
+      {
+        title: 'Deck',
+        link: '/pages/card/deck',
       },
     ],
   },

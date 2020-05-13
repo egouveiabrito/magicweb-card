@@ -20,5 +20,6 @@ export interface Card {
   };
   'type_line': string;
   'oracle_text': string;
+  'count': number;
 }
 

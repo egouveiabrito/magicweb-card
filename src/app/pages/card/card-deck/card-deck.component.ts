@@ -1,28 +1,22 @@
-import { CardActionListComponent } from './../card-action-list/card-action-list.component';
 import { Card } from './../card';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../@service/api-service';
 
 @Component({
-  selector: 'ngx-card-list',
-  templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.scss'],
+  selector: 'ngx-card-deck',
+  templateUrl: './card-deck.component.html',
+  styleUrls: ['./card-deck.component.scss']
 })
-export class CardListComponent implements OnInit {
+export class CardDeckComponent implements OnInit {
 
   source: Card[];
 
   settings = {
     actions: { add: false, edit: false, delete: false },
     columns: {
-      id: {
-        filter: false,
-        title: 'Action',
-        type: 'custom',
-        valuePrepareFunction: (id: string) => {
-          return id;
-        },
-        renderComponent: CardActionListComponent,
+      count: {
+        title: 'Count',
+        type: 'string',
       },
       name: {
         title: 'Name',
@@ -45,22 +39,22 @@ export class CardListComponent implements OnInit {
       },
     },
   };
+
   constructor(private service: ApiService) { }
 
   ngOnInit(): void {
-    this.OnSearch();
+    this.OnDeck();
   }
-  OnSearch() {
-    const cards$ = this.service.getCards('chandra');
+  OnDeck() {
+    const cards$ = this.service.getDeck();
     cards$.subscribe(
       cards => {
-        this.source = this.addImages(cards.data);
+        this.source = this.addImages(cards);
       });
   }
   addImages(cards) {
     cards.forEach(card => {
       card.image = card.image_uris !== undefined ? card.image_uris.small : null;
-      card.count = 0;
     });
     return cards;
   }

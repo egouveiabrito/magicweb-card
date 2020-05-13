@@ -1,13 +1,12 @@
 import { Card } from './../card';
-import { ApiService } from './../../service/api-service';
+import { ApiService } from '../../../@service/api-service';
 import { Component, OnInit, Input } from '@angular/core';
-import { NbComponentStatus } from '@nebular/theme';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'ngx-card-action-list',
   templateUrl: './card-action-list.component.html',
-  styleUrls: ['./card-action-list.component.scss']
+  styleUrls: ['./card-action-list.component.scss'],
 })
 export class CardActionListComponent implements OnInit {
 
@@ -24,25 +23,34 @@ export class CardActionListComponent implements OnInit {
   ngOnInit() {
     this.refresh(this.value.toString());
   }
-  refresh(oracle_id: string) {
-    this.service.getCardDeckByOracleId(oracle_id).subscribe(
-      cards => {
-        this.Count = cards.length;
-      },
+  refresh(id) {
+    this.service.getCardDeckById(id).subscribe(
+      card => this.Count = card.count,
     );
   }
   OnCreate(event) {
-    event.rowData.id = Math.random();
-    this.service.create(event.rowData).subscribe(card => {
-      this.refresh(event.rowData.oracle_id);
-    });
+    event.rowData.count += 1;
+    this.service.getCardDeckById(event.rowData.id).subscribe(
+      success => {
+        this.service.update(event.rowData).subscribe(card => {
+          this.Count = event.rowData.count;
+        });
+      },
+      notExist => {
+        this.service.create(event.rowData).subscribe(card => {
+          this.Count = event.rowData.count;
+        });
+      },
+    );
   }
   OnRemove(event) {
-    if (this.Count > 0) {
-      this.service.getCardDeckByOracleId(event.rowData.oracle_id).subscribe(cards => {
-        this.service.remove(cards[0].id).subscribe();
-        this.refresh(event.rowData.oracle_id);
-      });
+    if (event.Count === 0) return;
+    event.rowData.count = event.Count - 1;
+    this.Count = event.rowData.count;
+    if (event.rowData.count <= 0) {
+      this.service.remove(event.rowData.id).subscribe();
+    } else {
+      this.service.update(event.rowData).subscribe();
     }
   }
 }

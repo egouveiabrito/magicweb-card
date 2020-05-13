@@ -1,11 +1,11 @@
 <nb-card>
     <nb-card-header>
-        Search
+        Deck
     </nb-card-header>
     <nb-card-body>
         <ng2-smart-table [settings]="settings" [source]="source">
         </ng2-smart-table>
-        <span *ngIf="(source)" #loading>
+        <span *ngIf="(source | async)" #loading>
       Carregando cards...
     </span>
     </nb-card-body>
