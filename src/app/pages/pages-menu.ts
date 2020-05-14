@@ -21,4 +21,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'Jogador',
+    icon: 'person',
+    children: [
+      {
+        title: 'Search',
+        link: '/pages/jogador/list',
+      },
+      {
+        title: 'Add+',
+        link: '/pages/jogador/form',
+      },
+    ],
+  },
 ];

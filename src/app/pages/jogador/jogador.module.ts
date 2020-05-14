@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import {
   NbActionsModule,
   NbButtonModule,
@@ -9,15 +10,17 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
-} from '@nebular/theme';
+  NbSearchModule,
+  NbAlertModule,
+  NbPopoverModule,
 
+} from '@nebular/theme';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ThemeModule } from '../../@theme/theme.module';
-import { FormsRoutingModule } from './forms-routing.module';
-import { FormsComponent } from './forms.component';
-import { FormInputsComponent } from './form-inputs/form-inputs.component';
-import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
-import { DatepickerComponent } from './datepicker/datepicker.component';
-import { ButtonsComponent } from './buttons/buttons.component';
+import { JogadorRoutingModule } from './jogador-routing.module';
+import { JogadorComponent } from './jogador.component';
+import { JogadorListComponent } from './jogador-list/jogador-list.component';
+import { JogadorFormComponent } from './jogador-form/jogador-form.component';
 import { FormsModule as ngFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -31,17 +34,19 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
     NbCheckboxModule,
     NbRadioModule,
     NbDatepickerModule,
-    FormsRoutingModule,
     NbSelectModule,
     NbIconModule,
     ngFormsModule,
+    Ng2SmartTableModule,
+    NbSearchModule,
+    NbAlertModule,
+    NbPopoverModule,
+    JogadorRoutingModule,
   ],
   declarations: [
-    FormsComponent,
-    ButtonsComponent,
-    FormInputsComponent,
-    FormLayoutsComponent,
-    DatepickerComponent,
+    JogadorComponent,
+    JogadorListComponent,
+    JogadorFormComponent,
   ],
 })
-export class FormsModule { }
+export class JogadorModule { }

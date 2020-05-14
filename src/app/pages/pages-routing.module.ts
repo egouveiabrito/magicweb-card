@@ -19,6 +19,11 @@ const routes: Routes = [{
         .then(m => m.CardModule),
     },
     {
+      path: 'jogador',
+      loadChildren: () => import('./jogador/jogador.module')
+        .then(m => m.JogadorModule),
+    },
+    {
       path: '**',
       component: NotFoundComponent,
     },

@@ -1,6 +1,8 @@
+import { ToastProvider } from './../../../shared/toast/toast.provider';
 import { ApiService } from '../../../@service/api-service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+
 
 @Component({
   selector: 'ngx-card-action-list',
@@ -17,7 +19,10 @@ export class CardActionListComponent implements OnInit {
 
   @Input() value: string;
 
-  constructor(private service: ApiService) { }
+  constructor(
+    private service: ApiService,
+    private toast: ToastProvider,
+  ) { }
 
   ngOnInit() {
     this.refresh(this.value.toString());
@@ -41,6 +46,7 @@ export class CardActionListComponent implements OnInit {
         });
       },
     );
+    this.toast.showToast(this.toast.success, 'card successfully added!', '');
   }
   OnRemove(event) {
     if (event.Count === 0) return;
@@ -50,6 +56,7 @@ export class CardActionListComponent implements OnInit {
       this.service.remove(event.rowData.id).subscribe();
     } else {
       this.service.update(event.rowData).subscribe();
+      this.toast.showToast(this.toast.warning, 'card successfully removed!', '');
     }
   }
 }

@@ -1,3 +1,4 @@
+import { ToastProvider } from './../../shared/toast/toast.provider';
 import { NgModule } from '@angular/core';
 
 import {
@@ -49,6 +50,9 @@ import { CardDeckComponent } from './card-deck/card-deck.component';
     CardListComponent,
     CardActionListComponent,
     CardDeckComponent,
+  ],
+  providers: [
+    ToastProvider, // seu provider aqui
   ],
 })
 export class CardModule { }
