@@ -1,38 +1,71 @@
-<nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+<nb-card>
     <nb-card-body>
-        <nb-stepper orientation="horizontal">
-            <nb-step [label]="labelOne">
-                <ng-template #labelOne>First step</ng-template>
+        <nb-stepper #stepper>
+            <nb-step [stepControl]="firstForm" label="Person">
+                <form [formGroup]="firstForm" (ngSubmit)="OnFirstSubmit()" class="step-container form-inline">
+
+                    <div class="col-md-6">
+                        <input nbInput fullWidth type="email" status="primary" (change)="OnSearchJogador()" placeholder="E-mail" id="email" [(ngModel)]="model.email" name="email" formControlName="email">
+                    </div>
+
+                    <div class="col-md-8">
+                        <input nbInput fullWidth type="text" placeholder="Name" maxlength="100" id="name" [(ngModel)]="model.name" name="name" formControlName="name">
+                    </div>
+
+                    <div class="col-md-12">
+                        <button nbButton nbStepperNext>next</button>
+                    </div>
+
+                </form>
+            </nb-step>
+            <nb-step [stepControl]="secondForm" label="Address">
+                <form [formGroup]="secondForm" (ngSubmit)="OnSecondSubmit()" class="step-container">
+
+                    <div class="col-md-2">
+                        <input nbInput fullWidth (change)="OnSearchCep()" mask='000000-000' status="primary" type="text" placeholder="Cep for search..." id="cep" [(ngModel)]="address.cep" name="model.address.cep" formControlName="cep">
+                    </div>
+
+                    <div class="col-md-6">
+                        <input nbInput fullWidth type="text" maxlength="250" placeholder="Local" id="localidade" [(ngModel)]="address.localidade" formControlName="localidade">
+                    </div>
+
+                    <div class="col-md-1">
+                        <nb-select selected="1" id="uf" fullWidth [(ngModel)]="address.uf" formControlName="uf">
+                            <nb-option value="PE">PE</nb-option>
+                            <nb-option value="BA">BA</nb-option>
+                            <nb-option value="BA">BA</nb-option>
+                            <nb-option value="RJ">RJ</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-md-4">
+                        <input nbInput fullWidth type="text" maxlength="50" placeholder="District" id="bairro" [(ngModel)]="address.bairro" formControlName="bairro">
+                    </div>
+
+                    <div class="col-md-4">
+                        <input nbInput fullWidth type="text" maxlength="250" placeholder="Street" id="logradouro" [(ngModel)]="address.logradouro" formControlName="logradouro">
+                    </div>
+                    <div class="col-md-9">
+                        <textarea rows="5" nbInput fullWidth shape="round" maxlength="250" placeholder="Complement" [(ngModel)]="address.complemento" id="complemento" formControlName="complemento" placeholder="Complemento"></textarea>
+                    </div>
+
+                </form>
                 <div class="col-md-12">
-                    <nb-card class="inline-form-card">
-                        <nb-card-header>Personal Information</nb-card-header>
-                        <nb-card-body>
-                            <form class="form-inline">
-                                <input type="text" nbInput fullWidth placeholder="Name" id="name" required [(ngModel)]="model.name" name="name">
-                                <input type="text" nbInput fullWidth placeholder="Email" id="email" required [(ngModel)]="model.email" name="email">
-                            </form>
-                        </nb-card-body>
-                    </nb-card>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperNext>next</button>
                 </div>
-                <button nbButton disabled nbStepperNext>prev</button>
-                <button nbButton (click)="onFirstSubmit()"> next</button>
             </nb-step>
-            <nb-step [label]="labelTwo">
-                <ng-template #labelTwo>Second step</ng-template>
-                <h3>Step content #2</h3>
-                <button nbButton nbStepperPrevious>prev</button>
-                <button nbButton nbStepperNext>next</button>
+            <nb-step [stepControl]="thirdForm" label="Third step">
+                <form [formGroup]="thirdForm" (ngSubmit)="OnThirdSubmit()" class="step-container">
+                    <input nbInput type="text" status="primary" [(ngModel)]="model.estilo" id="estilo" formControlName="estilo" placeholder="Estilo. Ex: Mono Black">
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton (click)="OnSave()" nbStepperNext>Confirm</button>
+                </form>
             </nb-step>
-            <nb-step label="Third step">
-                <h3>Step content #3</h3>
-                <button nbButton nbStepperPrevious>prev</button>
-                <button nbButton nbStepperNext>next</button>
-            </nb-step>
-            <nb-step [label]="labelFour">
-                <ng-template #labelFour>Fourth step</ng-template>
-                <h3>Step content #4</h3>
-                <button nbButton nbStepperPrevious>prev</button>
-                <button nbButton disabled nbStepperNext>next</button>
+            <nb-step [stepControl]="thirdForm" [hidden]="true" label="Third step">
+                <div class="step-container">
+                    <h3>Player completed!</h3>
+                    <button nbButton (click)="stepper.reset()">Finalizado</button>
+                </div>
             </nb-step>
         </nb-stepper>
     </nb-card-body>

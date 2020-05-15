@@ -1,4 +1,57 @@
 {
+  "jogador": [
+    {
+      "id": 1,
+      "name": "Daniele Barbosa",
+      "email": "daniele.barbosa@gmail.com",
+      "address": {
+        "cep": "54753-090",
+        "logradouro": "Rua Grande Sertão",
+        "complemento": "",
+        "bairro": "Nazaré",
+        "localidade": "Camaragibe",
+        "uf": "PE",
+        "unidade": "",
+        "ibge": "2603454",
+        "gia": ""
+      },
+      "estilo": "Mono Red"
+    },
+    {
+      "id": 2,
+      "name": "Tulio Capoto",
+      "email": "tulio_capoto@hotmail.com",
+      "estilo": "Mono Red",
+      "address": {
+        "cep": "54753-090",
+        "logradouro": "Rua Grande Sertão",
+        "complemento": "",
+        "bairro": "Nazaré",
+        "localidade": "Camaragibe",
+        "uf": "PE",
+        "unidade": "",
+        "ibge": "2603454",
+        "gia": ""
+      }
+    },
+    {
+      "id": 3,
+      "name": "egouveia",
+      "email": "alissongouveia@live.com",
+      "estilo": "Branco",
+      "address": {
+        "cep": "54753-090",
+        "logradouro": "Rua Grande Sertão",
+        "complemento": "",
+        "bairro": "Nazaré",
+        "localidade": "Camaragibe",
+        "uf": "PE",
+        "unidade": "",
+        "ibge": "2603454",
+        "gia": ""
+      }
+    }
+  ],
   "deck": [
     {
       "object": "card",
