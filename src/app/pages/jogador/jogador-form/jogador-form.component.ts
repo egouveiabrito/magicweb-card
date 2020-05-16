@@ -4,6 +4,7 @@ import { ApiService } from './../../../@service/api-service';
 import { Jogador } from './../../jogador';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'ngx-jogador-form',
@@ -16,6 +17,9 @@ export class JogadorFormComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
+
+  ufs: String[];
+
 
   model = new Jogador(null, null, null, null, null);
   address = new Address(null, null, null, null, null, null);
@@ -38,25 +42,25 @@ export class JogadorFormComponent implements OnInit {
     });
 
     this.thirdForm = this.fb.group({
-      estilo: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      estilo: [''],
     });
   }
-
-  ngOnInit(): void {
+  getUfs() {
+    this.ufs = ['PE', 'RJ', 'SP', 'BA', 'BH', 'ES', 'RO', 'AM'];
   }
-
+  ngOnInit(): void {
+    this.getUfs();
+    console.info(this.ufs);
+  }
   OnFirstSubmit() {
     this.firstForm.markAsDirty();
   }
-
   OnSecondSubmit() {
     this.secondForm.markAsDirty();
   }
-
   OnThirdSubmit() {
     this.thirdForm.markAsDirty();
   }
-
   OnSave() {
     // tslint:disable-next-line: no-console
     console.info(this.model);
@@ -79,13 +83,11 @@ export class JogadorFormComponent implements OnInit {
     );
 
   }
-
   OnSearchCep() {
     this.service.getAddress(this.address.cep).subscribe(address => {
       this.fillAddress(address);
     });
   }
-
   fillJogador(jogador) {
     this.model = jogador;
     this.firstForm.patchValue({
@@ -95,7 +97,6 @@ export class JogadorFormComponent implements OnInit {
       estilo: this.model.estilo,
     });
   }
-
   fillAddress(address: Address) {
     this.model.address = address;
     this.secondForm.patchValue({
@@ -107,4 +108,5 @@ export class JogadorFormComponent implements OnInit {
       logradouro: this.model.address.logradouro,
     });
   }
+
 }

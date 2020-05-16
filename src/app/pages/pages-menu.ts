@@ -8,11 +8,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/iot-dashboard',
   },
   {
-    title: 'Card',
+    title: 'Cartas',
     icon: 'cube',
     children: [
       {
-        title: 'Search',
+        title: 'Buscar',
         link: '/pages/card/list',
       },
       {
@@ -26,11 +26,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'person',
     children: [
       {
-        title: 'Search',
+        title: 'Buscar',
         link: '/pages/jogador/list',
       },
       {
-        title: 'Add+',
+        title: 'Adicionar',
         link: '/pages/jogador/form',
       },
     ],

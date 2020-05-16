@@ -1,63 +1,84 @@
 <nb-card>
     <nb-card-body>
         <nb-stepper #stepper>
-            <nb-step [stepControl]="firstForm" label="Person">
-                <form [formGroup]="firstForm" (ngSubmit)="OnFirstSubmit()" class="step-container form-inline">
+            <nb-step [stepControl]="firstForm" label="Jogador">
+                <div class="col-md-12">
+                    <img style="width: 550px;height: 300px;" src="../../../../assets/images/liliana.png">
+                    <p class="lorem">
+                        “Quando você estiver cambaleando na beira do esquecimento, serão minhas as mãos que terão o prazer de lhe dar o empurrão final.” <br>by: Liliana Vess<br>
+                    </p>
+                </div>
 
+                <form [formGroup]="firstForm" (ngSubmit)="OnFirstSubmit()" class="step-container form-inline">
                     <div class="col-md-6">
                         <input nbInput fullWidth type="email" status="primary" (change)="OnSearchJogador()" placeholder="E-mail" id="email" [(ngModel)]="model.email" name="email" formControlName="email">
                     </div>
-
                     <div class="col-md-8">
-                        <input nbInput fullWidth type="text" placeholder="Name" maxlength="100" id="name" [(ngModel)]="model.name" name="name" formControlName="name">
+                        <input nbInput fullWidth type="text" placeholder="Nome Completo" maxlength="100" id="name" [(ngModel)]="model.name" name="name" formControlName="name">
                     </div>
-
                     <div class="col-md-12">
-                        <button nbButton nbStepperNext>next</button>
+                        <button nbButton nbStepperNext>Próximo</button>
                     </div>
-
                 </form>
             </nb-step>
-            <nb-step [stepControl]="secondForm" label="Address">
+            <nb-step [stepControl]="secondForm" label="Endereço">
                 <form [formGroup]="secondForm" (ngSubmit)="OnSecondSubmit()" class="step-container">
 
                     <div class="col-md-2">
                         <input nbInput fullWidth (change)="OnSearchCep()" mask='000000-000' status="primary" type="text" placeholder="Cep for search..." id="cep" [(ngModel)]="address.cep" name="model.address.cep" formControlName="cep">
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <input nbInput fullWidth type="text" maxlength="250" placeholder="Local" id="localidade" [(ngModel)]="address.localidade" formControlName="localidade">
                     </div>
 
+
                     <div class="col-md-1">
-                        <nb-select selected="1" id="uf" fullWidth [(ngModel)]="address.uf" formControlName="uf">
-                            <nb-option value="PE">PE</nb-option>
-                            <nb-option value="BA">BA</nb-option>
-                            <nb-option value="BA">BA</nb-option>
-                            <nb-option value="RJ">RJ</nb-option>
+                        <nb-select id="uf" fullWidth [(ngModel)]="address.uf" formControlName="uf">
+                            <nb-option *ngFor="let uf of ufs" value={{uf}}>
+                                {{uf}}
+                            </nb-option>
                         </nb-select>
                     </div>
-                    <div class="col-md-4">
-                        <input nbInput fullWidth type="text" maxlength="50" placeholder="District" id="bairro" [(ngModel)]="address.bairro" formControlName="bairro">
+
+                    <div class="col-md-3">
+                        <input nbInput fullWidth type="text" maxlength="50" placeholder="Bairro" id="bairro" [(ngModel)]="address.bairro" formControlName="bairro">
                     </div>
 
                     <div class="col-md-4">
-                        <input nbInput fullWidth type="text" maxlength="250" placeholder="Street" id="logradouro" [(ngModel)]="address.logradouro" formControlName="logradouro">
+                        <input nbInput fullWidth type="text" maxlength="250" placeholder="Logradouro" id="logradouro" [(ngModel)]="address.logradouro" formControlName="logradouro">
                     </div>
                     <div class="col-md-9">
-                        <textarea rows="5" nbInput fullWidth shape="round" maxlength="250" placeholder="Complement" [(ngModel)]="address.complemento" id="complemento" formControlName="complemento" placeholder="Complemento"></textarea>
+                        <textarea rows="5" nbInput fullWidth shape="round" maxlength="250" placeholder="Complemento" [(ngModel)]="address.complemento" id="complemento" formControlName="complemento" placeholder="Complemento"></textarea>
                     </div>
 
                 </form>
                 <div class="col-md-12">
-                    <button nbButton nbStepperPrevious>prev</button>
-                    <button nbButton nbStepperNext>next</button>
+                    <button nbButton nbStepperPrevious>Antes</button>
+                    <button nbButton nbStepperNext>Próximo</button>
                 </div>
             </nb-step>
-            <nb-step [stepControl]="thirdForm" label="Third step">
+            <nb-step [stepControl]="thirdForm" label="Formato">
                 <form [formGroup]="thirdForm" (ngSubmit)="OnThirdSubmit()" class="step-container">
-                    <input nbInput type="text" status="primary" [(ngModel)]="model.estilo" id="estilo" formControlName="estilo" placeholder="Estilo. Ex: Mono Black">
-                    <button nbButton nbStepperPrevious>prev</button>
+                    <div class="col-md-12">
+                        <img style="width: 550px;height: 300px;" src="../../../../assets/images/chandra.png">
+                        <p class="lorem">
+                            “A combustão espontânea é um mito. Se você pega fogo, é porque alguém quis isso.” <br>by: Chandra Nallar<br>
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <nb-select selected="1" id="uf" fullWidth status="primary" [(ngModel)]="model.estilo" id="estilo" formControlName="estilo">
+                            <nb-option value="Padrão">Padrão</nb-option>
+                            <nb-option value="Legado">Legado</nb-option>
+                            <nb-option value="Commander">Commander</nb-option>
+                            <nb-option value="Pioneiro">Pioneiro</nb-option>
+                            <nb-option value="Vintage">Vintage</nb-option>
+                            <nb-option value="Bloco">Bloco</nb-option>
+                            <nb-option value="Gigante de duas cabeças">Gigante de duas cabeças</nb-option>
+                            <nb-option value="Brawl">Brawl</nb-option>
+                        </nb-select>
+                    </div>
+                    <button nbButton nbStepperPrevious>Antes</button>
                     <button nbButton (click)="OnSave()" nbStepperNext>Confirm</button>
                 </form>
             </nb-step>
