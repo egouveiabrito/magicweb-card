@@ -25,6 +25,8 @@ import { JogadorRoutingModule } from './jogador-routing.module';
 import { JogadorComponent } from './jogador.component';
 import { JogadorListComponent } from './jogador-list/jogador-list.component';
 import { JogadorFormComponent } from './jogador-form/jogador-form.component';
+import { JogadorActionListComponent } from './jogador-action-list/jogador-action-list.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastProvider } from '../../shared/toast/toast.provider';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
@@ -71,6 +73,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     JogadorComponent,
     JogadorListComponent,
     JogadorFormComponent,
+    JogadorActionListComponent,
   ],
   providers: [
     ToastProvider,

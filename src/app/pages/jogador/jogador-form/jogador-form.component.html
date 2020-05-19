@@ -32,9 +32,8 @@
                         <input nbInput fullWidth type="text" maxlength="250" placeholder="Local" id="localidade" [(ngModel)]="address.localidade" formControlName="localidade">
                     </div>
 
-
                     <div class="col-md-1">
-                        <nb-select id="uf" fullWidth [(ngModel)]="address.uf" formControlName="uf">
+                        <nb-select selected="1" id="uf" fullWidth status="primary" [(ngModel)]="address.uf" id="uf" formControlName="uf">
                             <nb-option *ngFor="let uf of ufs" value={{uf}}>
                                 {{uf}}
                             </nb-option>
@@ -63,19 +62,15 @@
                     <div class="col-md-12">
                         <img style="width: 550px;height: 300px;" src="../../../../assets/images/chandra.png">
                         <p class="lorem">
-                            “A combustão espontânea é um mito. Se você pega fogo, é porque alguém quis isso.” <br>by: Chandra Nallar<br>
+                            “A combustão espontânea é um mito. Se você pega fogo, é porque alguém quis isso.” <br>by: Chandra Nallar
+                            <br>
                         </p>
                     </div>
                     <div class="col-md-12">
-                        <nb-select selected="1" id="uf" fullWidth status="primary" [(ngModel)]="model.estilo" id="estilo" formControlName="estilo">
-                            <nb-option value="Padrão">Padrão</nb-option>
-                            <nb-option value="Legado">Legado</nb-option>
-                            <nb-option value="Commander">Commander</nb-option>
-                            <nb-option value="Pioneiro">Pioneiro</nb-option>
-                            <nb-option value="Vintage">Vintage</nb-option>
-                            <nb-option value="Bloco">Bloco</nb-option>
-                            <nb-option value="Gigante de duas cabeças">Gigante de duas cabeças</nb-option>
-                            <nb-option value="Brawl">Brawl</nb-option>
+                        <nb-select selected="1" id="estilo" fullWidth status="primary" [(ngModel)]="model.estilo" id="estilo" formControlName="estilo">
+                            <nb-option *ngFor="let formato of formatos" value={{formato}}>
+                                {{formato}}
+                            </nb-option>
                         </nb-select>
                     </div>
                     <button nbButton nbStepperPrevious>Antes</button>

@@ -19,37 +19,52 @@ export class ApiService {
 
   private readonly BANCO_DADOS = environment.BANCO_DADOS;
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   public getCards(search: string): Observable<ResponseCard> {
-    return this.http.get<ResponseCard>(`${this.API}/cards/search?q=${search}`).pipe(delay(1000)).pipe(take(1));
+    return this.httpClient.get<ResponseCard>(`${this.API}/cards/search?q=${search}`).pipe(delay(1000)).pipe(take(1));
   }
+
+
+
   // tslint:disable-next-line: comment-format
   //Banco de dados.
   public create(card: Card) {
-    return this.http.post(`${this.BANCO_DADOS}/deck`, card).pipe(take(1));
+    return this.httpClient.post(`${this.BANCO_DADOS}/deck`, card).pipe(take(1));
   }
   public update(card) {
-    return this.http.put(`${this.BANCO_DADOS}/deck/${card.id}`, card).pipe(take(1));
+    return this.httpClient.put(`${this.BANCO_DADOS}/deck/${card.id}`, card).pipe(take(1));
   }
   public getCardDeckById(id): Observable<Card> {
-    return this.http.get<Card>(`${this.BANCO_DADOS}/deck/${id}`).pipe(take(1));
+    return this.httpClient.get<Card>(`${this.BANCO_DADOS}/deck/${id}`).pipe(take(1));
   }
   public getDeck() {
-    return this.http.get<Card[]>(`${this.BANCO_DADOS}/deck`).pipe(take(1));
+    return this.httpClient.get<Card[]>(`${this.BANCO_DADOS}/deck`).pipe(take(1));
   }
   remove(id) {
-    return this.http.delete(`${this.BANCO_DADOS}/deck/${id}`).pipe(take(1));
+    return this.httpClient.delete(`${this.BANCO_DADOS}/deck/${id}`).pipe(take(1));
   }
+
+
+
+
   createJogador(jogador: Jogador) {
-    return this.http.post(`${this.BANCO_DADOS}/jogador`, jogador).pipe(take(1));
+    return this.httpClient.post(`${this.BANCO_DADOS}/jogador`, jogador).pipe(take(1));
   }
   public updateJogador(jogador: Jogador) {
-    return this.http.put(`${this.BANCO_DADOS}/jogador/${jogador.id}`, jogador).pipe(take(1));
+    return this.httpClient.put(`${this.BANCO_DADOS}/jogador/${jogador.id}`, jogador).pipe(take(1));
   }
   public getJogador(email): Observable<Jogador> {
-    return this.http.get<Jogador>(`${this.BANCO_DADOS}/Jogador?email=${email}`).pipe(take(1));
+    return this.httpClient.get<Jogador>(`${this.BANCO_DADOS}/Jogador?email=${email}`).pipe(take(1));
+  }
+  public getAllJogador(): Observable<Jogador[]> {
+    return this.httpClient.get<Jogador[]>(`${this.BANCO_DADOS}/Jogador`).pipe(take(1));
+  }
+  public getJogadorByName(name: string): Observable<Jogador[]> {
+    return this.httpClient.get<Jogador[]>(`${this.BANCO_DADOS}/Jogador?q=${name}`).pipe(take(1));
+  }
+  public getJogadorById(id): Observable<Jogador> {
+    return this.httpClient.get<Jogador>(`${this.BANCO_DADOS}/Jogador?id=${id}`).pipe(take(1));
   }
   public saveJogador(jogador: Jogador) {
     if (jogador.id > 0)
@@ -57,6 +72,7 @@ export class ApiService {
     else
       return this.createJogador(jogador);
   }
+
   // tslint:disable-next-line: comment-format
   //Correios.
   public getAddress(cep: any): Observable<Address> {

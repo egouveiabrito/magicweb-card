@@ -4,16 +4,50 @@
       "id": 1,
       "name": "Edson Gouveia de Brito",
       "email": "edsongouveiabrito@gmail.com",
-      "estilo": "Legado",
+      "estilo": "Padrão",
       "address": {
-        "cep": "54753-090",
-        "logradouro": "Rua Grande Sertão",
+        "cep": "69301-030",
+        "logradouro": "Avenida Getúlio Vargas",
+        "complemento": "de 5021/5022 a 5977/5978",
+        "bairro": "Centro",
+        "localidade": "Boa Vista",
+        "uf": "AM",
+        "unidade": "",
+        "ibge": "1400100",
+        "gia": ""
+      }
+    },
+    {
+      "id": 2,
+      "name": "Alissinho Gouveia",
+      "email": "alissongouveia@gmail.com",
+      "estilo": "Commander",
+      "address": {
+        "cep": "54753-070",
+        "logradouro": "Rua Grande Oriente",
         "complemento": "",
         "bairro": "Nazaré",
         "localidade": "Camaragibe",
-        "uf": "PE",
+        "uf": "SP",
         "unidade": "",
         "ibge": "2603454",
+        "gia": ""
+      }
+    },
+    {
+      "id": 3,
+      "name": "Petronio mesquita",
+      "email": "petroniobmesquita@gmail.com",
+      "estilo": "Moderno",
+      "address": {
+        "cep": "69301-030",
+        "logradouro": "Avenida Getúlio Vargas",
+        "complemento": "de 5021/5022 a 5977/5978",
+        "bairro": "Centro",
+        "localidade": "Boa Vista",
+        "uf": "RJ",
+        "unidade": "",
+        "ibge": "1400100",
         "gia": ""
       }
     }

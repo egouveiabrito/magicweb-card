@@ -13,7 +13,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Buscar',
-        link: '/pages/card/list',
+        link: '/pages/card',
       },
       {
         title: 'Deck',
@@ -27,11 +27,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Buscar',
-        link: '/pages/jogador/list',
+        link: '/pages/jogador',
       },
       {
         title: 'Adicionar',
-        link: '/pages/jogador/form',
+        link: '/pages/jogador/novo',
       },
     ],
   },

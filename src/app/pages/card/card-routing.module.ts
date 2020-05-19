@@ -10,7 +10,7 @@ const routes: Routes = [
     component: CardComponent,
     children: [
       {
-        path: 'list',
+        path: '',
         component: CardListComponent,
       },
       {

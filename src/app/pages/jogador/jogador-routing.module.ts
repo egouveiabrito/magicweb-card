@@ -10,11 +10,15 @@ const routes: Routes = [
     component: JogadorComponent,
     children: [
       {
-        path: 'list',
+        path: '',
         component: JogadorListComponent,
       },
       {
-        path: 'form',
+        path: 'novo',
+        component: JogadorFormComponent,
+      },
+      {
+        path: 'editar/:id',
         component: JogadorFormComponent,
       },
     ],
@@ -29,6 +33,5 @@ const routes: Routes = [
     RouterModule,
   ],
 })
-export class JogadorRoutingModule {
-}
+export class JogadorRoutingModule {}
 

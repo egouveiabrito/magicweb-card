@@ -2,9 +2,9 @@ import { ToastProvider } from './../../../shared/toast/toast.provider';
 import { Address } from './../../../entity/address';
 import { ApiService } from './../../../@service/api-service';
 import { Jogador } from './../../jogador';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ngx-jogador-form',
@@ -19,16 +19,19 @@ export class JogadorFormComponent implements OnInit {
   thirdForm: FormGroup;
 
   ufs: String[];
-
+  formatos: String[];
 
   model = new Jogador(null, null, null, null, null);
   address = new Address(null, null, null, null, null, null);
 
-  constructor(private fb: FormBuilder, private service: ApiService, private toast: ToastProvider) {
+  constructor(private fb: FormBuilder,
+    private service: ApiService,
+    private toast: ToastProvider,
+    private route: ActivatedRoute) {
+
     this.firstForm = this.fb.group({
       id: 0,
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      // tslint:disable-next-line: max-line-length
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
     });
 
@@ -45,12 +48,16 @@ export class JogadorFormComponent implements OnInit {
       estilo: [''],
     });
   }
-  getUfs() {
-    this.ufs = ['PE', 'RJ', 'SP', 'BA', 'BH', 'ES', 'RO', 'AM'];
-  }
   ngOnInit(): void {
     this.getUfs();
-    console.info(this.ufs);
+    this.getFormatos();
+    this.IsEdit(this.route.snapshot.paramMap.get('id'));
+  }
+  getUfs() {
+    this.ufs = ['RJ', 'SP', 'BA', 'BH', 'ES', 'RO', 'AM'];
+  }
+  getFormatos() {
+    this.formatos = ['Padrão', 'Pioneer', 'Commander', 'Moderno'];
   }
   OnFirstSubmit() {
     this.firstForm.markAsDirty();
@@ -62,8 +69,7 @@ export class JogadorFormComponent implements OnInit {
     this.thirdForm.markAsDirty();
   }
   OnSave() {
-    // tslint:disable-next-line: no-console
-    console.info(this.model);
+   this.model.address = this.address;
     this.service.saveJogador(this.model).subscribe(
       success => this.toast.showToast(this.toast.success, 'Player registered!', ''),
       erro => console.error(erro),
@@ -74,8 +80,8 @@ export class JogadorFormComponent implements OnInit {
       jogadores => {
         if (jogadores[0] !== undefined) {
           console.info(jogadores[0]);
-          this.fillJogador(jogadores[0]);
-          this.fillAddress(jogadores[0].address);
+          this.FillJogador(jogadores[0]);
+          this.FillAddress(jogadores[0].address);
           this.toast.showToast(this.toast.warning, 'player already has registration!', '');
         }
       },
@@ -85,10 +91,27 @@ export class JogadorFormComponent implements OnInit {
   }
   OnSearchCep() {
     this.service.getAddress(this.address.cep).subscribe(address => {
-      this.fillAddress(address);
+      this.FillAddress(address);
     });
   }
-  fillJogador(jogador) {
+  GetJogadorById(id) {
+    this.service.getJogadorById(id).subscribe(
+      jogadores => {
+        if (jogadores[0] !== undefined) {
+          console.info(jogadores[0]);
+          this.FillJogador(jogadores[0]);
+          this.FillAddress(jogadores[0].address);
+          this.toast.showToast(this.toast.warning, 'player already has registration!', '');
+        }
+      },
+      erro => console.error(erro),
+    );
+  }
+  IsEdit(id) {
+    if (id !== undefined)
+      this.GetJogadorById(id);
+  }
+  FillJogador(jogador) {
     this.model = jogador;
     this.firstForm.patchValue({
       id: this.model.id,
@@ -97,15 +120,15 @@ export class JogadorFormComponent implements OnInit {
       estilo: this.model.estilo,
     });
   }
-  fillAddress(address: Address) {
-    this.model.address = address;
+  FillAddress(address: Address) {
+    this.address = address;
     this.secondForm.patchValue({
-      cep: this.model.address.cep,
-      localidade: this.model.address.localidade,
-      uf: this.model.address.uf,
-      bairro: this.model.address.bairro,
-      complemento: this.model.address.complemento,
-      logradouro: this.model.address.logradouro,
+      cep: this.address.cep,
+      localidade: this.address.localidade,
+      uf: this.address.uf,
+      bairro: this.address.bairro,
+      complemento: this.address.complemento,
+      logradouro: this.address.logradouro,
     });
   }
 
